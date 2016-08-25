@@ -9,7 +9,7 @@
  */
 
 function removeEmpty(obj) {
-  for (var key in obj) {
+  for (let key in obj) {
     if (obj[key] === "") {
       delete obj[key];
     }
@@ -55,16 +55,16 @@ function presentAlert(style, message) {
 function submitAlerts(form) {
   // Read data from form
   // There's absolutely a better way to do this.
-  let data = {}
+  let data = {};
   data["limit"] = form.alertsLimit.value;
   data["titles"] = form.alertsTitles.value;
   data["ldap"] = form.alertsLdap.value;
 
-  data["status"] = form.querySelector('input[name="alertsStatus"]:checked').value;
-  data["performed"] = form.querySelector('input[name="alertsPerformed"]:checked').value;
-  data["authenticated"] = form.querySelector('input[name="alertsAuthenticated"]:checked').value;
+  data["status"] = form.querySelector("input[name=\"alertsStatus\"]:checked").value;
+  data["performed"] = form.querySelector("input[name=\"alertsPerformed\"]:checked").value;
+  data["authenticated"] = form.querySelector("input[name=\"alertsAuthenticated\"]:checked").value;
   // Remove "any"s
-  for (key of ["status", "performed", "authenticated"]) {
+  for (let key of ["status", "performed", "authenticated"]) {
     if (data[key] === "any") {
       delete data[key];
     }
@@ -73,7 +73,7 @@ function submitAlerts(form) {
   data["after"] = form.alertsAfter.value;
   data["before"] = form.alertsBefore.value;
   // Parse dates
-  for (key of ["after", "before"]) {
+  for (let key of ["after", "before"]) {
     if (data[key]) {
       data[key] = Date.parse(data[key]) / 1000;
     }
@@ -106,7 +106,7 @@ function updateAlerts(data) {
   }
 
   // Convert various values
-  for (var alert of data["content"]["alerts"]) {
+  for (let alert of data["content"]["alerts"]) {
     // Timestamp => ISO string
     alert["event_time"] = new Date(parseInt(alert["event_time"]) * 1000).toISOString();
 
@@ -132,7 +132,7 @@ function submitIgnored(form) {
   removeEmpty(data);
 
   setVisible("ignoredLoading");
-  $.get('api/ignored', data, updateIgnored);
+  $.get("api/ignored", data, updateIgnored);
 
   return false;
 }
@@ -148,11 +148,11 @@ function updateIgnored(data) {
   }
 
   // Convert dates to something readable
-  for (var alert of data["content"]["ignored"]) {
+  for (let alert of data["content"]["ignored"]) {
     alert["until"] = new Date(parseInt(alert["until"]) * 1000).toISOString();
   }
 
-  updateTable("#ignoredTable", data["content"]["ignored"])
+  updateTable("#ignoredTable", data["content"]["ignored"]);
 }
 
 /**
@@ -165,7 +165,7 @@ function submitBlacklist(form) {
   removeEmpty(data);
 
   setVisible("blacklistLoading");
-  $.get('api/blacklist', data, updateBlacklist);
+  $.get("api/blacklist", data, updateBlacklist);
 
   return false;
 }
@@ -219,7 +219,7 @@ function submitCustom(form) {
   }
 
   if (hasError) {
-    presentAlert("alert-danger", "Please fill in the fields highlighted in red.")
+    presentAlert("alert-danger", "Please fill in the fields highlighted in red.");
   } else {
     setVisible("customLoading");
     $.post("api/create", data, validateCustom);
@@ -244,19 +244,19 @@ function validateCustom(data) {
 $(document).ready(function() {
   // Initialize DataTables
   let alertsTable = $("#alertsTable").DataTable({
-      columns: [
-          { name: "title", data: "title", title: "Title" },
-          { name: "username", data: "ldap", title: "Username" },
-          { name: "description", data: "description", title: "Description" },
-          { name: "reason", data: "reason", title: "Reason" },
-          { name: "performed", data: "performed", title: "Performed" },
-          { name: "authenticated", data: "authenticated", title: "Authenticated" },
-          { name: "url", data: "url", title: "URL" },
-          { name: "status", data: "status", title: "Status" },
-          { name: "event_time", data: "event_time", title: "Event time" },
-          { name: "hash", data: "hash", title: "Hash", visible: false }
-      ],
-      colReorder: true,
+    columns: [
+      { name: "title", data: "title", title: "Title" },
+      { name: "username", data: "ldap", title: "Username" },
+      { name: "description", data: "description", title: "Description" },
+      { name: "reason", data: "reason", title: "Reason" },
+      { name: "performed", data: "performed", title: "Performed" },
+      { name: "authenticated", data: "authenticated", title: "Authenticated" },
+      { name: "url", data: "url", title: "URL" },
+      { name: "status", data: "status", title: "Status" },
+      { name: "event_time", data: "event_time", title: "Event time" },
+      { name: "hash", data: "hash", title: "Hash", visible: false }
+    ],
+    colReorder: true,
   });
 
   let ignoredTable = $("#ignoredTable").DataTable({
@@ -274,22 +274,22 @@ $(document).ready(function() {
       { name: "username", data: "ldap", title: "Username" },
     ],
     colReorder: true,
-  })
+  });
 
-  tables = {
+  let tables = {
     alerts: alertsTable,
     ignored: ignoredTable,
     blacklist: blacklistTable,
-  }
+  };
 
   // Set up visibility toggles
-  $(".toggle-vis").on("click", function (e) {
-        let box = $(this);
+  $(".toggle-vis").on("click", function () {
+    let box = $(this);
 
-        // Get the column API object
-        let column = tables[box.attr("parent")].column(box.attr("name") + ":name");
+    // Get the column API object
+    let column = tables[box.attr("parent")].column(box.attr("name") + ":name");
 
-        // Toggle column visibility
-        column.visible(!column.visible());
-    });
+    // Toggle column visibility
+    column.visible(!column.visible());
+  });
 });
