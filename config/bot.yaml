@@ -1,0 +1,4 @@
+---
+messages_path: config/messages.yaml
+commands_path: config/commands.yaml
+...
