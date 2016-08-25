@@ -86,3 +86,8 @@ class SQLEngine(object):
 
 class SQLEngineException(Exception):
     pass
+
+def init_sql():
+    # type: () -> None
+    '''Initializes SQL.'''
+    SQLEngine('localhost', 'root', '', 'securitybot')

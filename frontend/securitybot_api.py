@@ -2,7 +2,7 @@
 API for the Securitybot database.
 '''
 # Securitybot imports
-from securitybot.sql import SQLEngine, SQLEngineException
+from securitybot.sql import SQLEngine, SQLEngineException, init_sql
 from securitybot.util import create_new_alert
 
 # Typing
@@ -10,7 +10,7 @@ from typing import Any, Dict, List, Sequence
 
 def init_api():
     # type: () -> None
-    SQLEngine('localhost', 'root', '', 'securitybot')
+    init_sql()
 
 # API functions
 '''
