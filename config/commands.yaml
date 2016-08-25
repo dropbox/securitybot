@@ -1,0 +1,60 @@
+---
+# Securitybot commands
+# Each command must have an information string and function to call.
+# They may also excplitly say whether they are hidden and provide their usage along with
+# success and failure messages, located in messages.yaml
+
+help: # Displays each command, their info and useage
+    info: This display here.
+    usage:
+        - "-a\t\tShow all commands, including ones hidden by default"
+    fn: help
+
+hi: # Says hello!
+    info: Hi!
+    fn: hi
+
+stop: # Adds a user to the blacklist
+    info: Adds you to the blacklist.
+    fn: add_to_blacklist
+    success_msg: Alright, you've been added to the blacklist. I won't bother you anymore.
+    failure_msg: Looks like you're already on the blacklist.
+
+start: # Removes a user from the blacklist
+    info: Removes you from the blacklist.
+    fn: remove_from_blacklist
+    success_msg: You're off the blacklist. Welcome back!
+    failure_msg: Looks like you're not on the blacklist.
+
+"yes": # Registers a positive response for a user
+    info: Registers a positive response from you.
+    fn: positive_response
+    hidden: Yes
+
+"no": # Registers a negative reponse for a user
+    info: Registers a negative response from you.
+    fn: negative_response
+    hidden: Yes
+
+ignore: # Ignores the user for one or more alerts for some period of time
+    info: Ignores the current alert or previous alert if there is no current alert.
+    usage:
+        - "`ignore (last|current) XhYm`"
+        - "Ignores an alert for X hours and Y minutes. At least one of hours or minutes must be provided."
+        - "Selectable whether this ignores the current alert
+           (whatever the bot is bothering you about right now) or the last one
+           (whichever one you just dealt with)."
+    fn: ignore
+    success_msg: >
+        Alright, I'll stop bothering you about that for now.
+        You'll need to finish up your current alert if you chose to ignore it in the future.
+    failure_msg: Sorry, either that command was malformed or you have no alerts to ignore.
+
+test: # Generates a test alert for a user
+    info: Generates a test alert for you.
+    fn: test
+    hidden: Yes
+    success_msg: 'Sending you a testing alert. Be patient...'
+    failure_msg: 'I was unable to generate a testing alert. Sorry. :sadpanda:'
+
+...

@@ -1,0 +1,104 @@
+---
+# Messages for securitybot
+# This file is loaded, parsed and fed into the bot.
+
+# Basic bot greeting.
+# Formatting parameter 0 is the name to use when addressing the user.
+greeting: >
+    Hi there {0}!
+
+    Feel free to message me `help` for some commands you can use, e.g `stop` or `ignore`.
+
+# Message to send between alerts. (but wait there's more)
+bwtm: >
+    One more thing...
+
+# Message to send once all current alerts have been dealt with
+bye: >
+    Thanks for your help!
+
+# Message sent when alerting a user that a security action occured
+# Takes alert description and alert reason as formatting parameters 0 and 1 rsp
+alert: >
+    There's an alert, `{0}`, that's associated with your username.
+
+    Here's some more information on the alert:
+
+    {1}
+
+# Message sent when asking for user response on whether they're responsible
+action_prompt: >
+    Did you do this?
+
+    Respond with either "yes" or "no" followed by an explanation in one message.
+
+# Message sent if the user is not responsible
+escalated: >
+    That's fine. Don't worry, I'll share this with the security team and they'll
+    look into this and get back to you if they need more.
+
+# Message sent when no 2FA is available
+no_2fa: >
+    It doesn't look like you have 2FA set up on your account.
+
+# Message sent when asking for 2FA
+2fa: >
+    Great! To confirm this I'm going to send a 2FA to your device.
+    Are you okay with that? Respond with either "yes" or "no" on their own.
+
+# Message send when sending a 2FA
+sending_push: >
+    I'm sending you a 2FA right now. Check to make sure that it's from me
+    and then feel free to accept it.
+
+# Message sent on 2FA approval
+good_auth: >
+    Awesome, I've noted what you've said and should take care of this.
+
+# Message sent on 2FA denial
+bad_auth: >
+    Sadly that 2FA request didn't go through...
+
+    The task has been shared with the security team who will look into it
+    shortly. They'll get back to you when they can.
+
+# Message sent when a bad resposne is retrieved
+bad_response: >
+    Sorry, I didn't understand that. Try again, please.
+
+# Message sent when automatically escalating a task
+no_response: >
+    I didn't hear anything from you, so I'll just send that off to the security team and they'll
+    contact you soon if needed.
+
+# Message sent to report a user didn't do something.
+report: >
+    `{username}` reports they didn't do `{title}` (`{description}`):
+
+    {comment}
+
+    URL: {url}
+
+# Sent when a message is unrecognized
+bad_command: >
+    I'm sorry, I don't understand. Try saying `help` for more information.
+
+# Command messages
+help_header: >
+    Securitybot commands:
+
+help_usage: Usage
+
+help_footer: >
+    Treat these like terminal commands; you can pass in flags and parameters.
+
+hi: >
+    Hello there {0}!
+
+ignore_time: >
+    Ignoring specific alerts is limited to just four hours.
+    I've reduced the amount of time to that limit.
+
+ignore_no_time: >
+    You must provide a non-zero amount of time.
+...
