@@ -8,45 +8,45 @@
  * It relies on jQuery and DataTables.
  */
 
- function removeEmpty(obj) {
-   for (var key in obj) {
-     if (obj[key] === "") {
-       delete obj[key];
-     }
-   }
- }
+function removeEmpty(obj) {
+  for (var key in obj) {
+    if (obj[key] === "") {
+      delete obj[key];
+    }
+  }
+}
 
- function updateTable(id, arr) {
-   let table = $(id).dataTable();
-   table.fnClearTable();
-   if (arr.length > 0) {
-     table.fnAddData(arr);
-   }
- }
+function updateTable(id, arr) {
+  let table = $(id).dataTable();
+  table.fnClearTable();
+  if (arr.length > 0) {
+    table.fnAddData(arr);
+  }
+}
 
- function setVisible(id) {
-   document.getElementById(id).style.visibility = "visible";
- }
+function setVisible(id) {
+  document.getElementById(id).style.visibility = "visible";
+}
 
- function setHidden(id) {
-   document.getElementById(id).style.visibility = "hidden";
- }
+function setHidden(id) {
+  document.getElementById(id).style.visibility = "hidden";
+}
 
- function hideAlert() {
-   document.getElementById("globalAlert").style.display = "none";
- }
+function hideAlert() {
+  document.getElementById("globalAlert").style.display = "none";
+}
 
- function showAlert() {
-   document.getElementById("globalAlert").style.display = "block";
- }
+function showAlert() {
+  document.getElementById("globalAlert").style.display = "block";
+}
 
- function presentAlert(style, message) {
-   let alert = document.getElementById("globalAlert");
-   showAlert();
-   alert.innerHTML = message;
-   alert.className = "alert " + style;
-   setTimeout(hideAlert, 5000);
- }
+function presentAlert(style, message) {
+  let alert = document.getElementById("globalAlert");
+  showAlert();
+  alert.innerHTML = message;
+  alert.className = "alert " + style;
+  setTimeout(hideAlert, 5000);
+}
 
  /**
   * Submit actions for the alerts form.
