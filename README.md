@@ -42,8 +42,8 @@ Having a database allows alerts to be persistent and means that the bot doesn't 
 ### Securitybot proper
 The bot itself performs a small set of functions:
 1. Reads messages, interpreting them as commands.
-2. Polls each user object to update their state of applicable.
-3. Grabs new alerts from the database and assigns them to users or escalates on an unknown user.
+1. Polls each user object to update their state of applicable.
+1. Grabs new alerts from the database and assigns them to users or escalates on an unknown user.
 
 Messaging, 2FA, and alert management are provided by configurable modules, and added to the bot upon initialization.
 
@@ -73,6 +73,11 @@ Blacklists are handled by the SQL database, provided in `blacklist/blacklist.py`
 ### Users
 The `User` object provides support for handling user state.
 We keep track of whatever information a messaging system gives to us, but really only ever use a user's unique ID and username in order to contact them.
+
+### Alerts
+Alerts are uniquely identified by a SHA-256 hash which comes from some hash of the event that generated them.
+We assume that a SHA-256 hash is sufficiently random for there to be no collisions.
+If you encounter a SHA-256 collision, please contact someone your nearest University and enjoy the fame and fortune it brings upon you.
 
 ## FAQ
 
