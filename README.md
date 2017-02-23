@@ -78,7 +78,7 @@ We keep track of whatever information a messaging system gives to us, but really
 ### Alerts
 Alerts are uniquely identified by a SHA-256 hash which comes from some hash of the event that generated them.
 We assume that a SHA-256 hash is sufficiently random for there to be no collisions.
-If you encounter a SHA-256 collision, please contact someone your nearest University and enjoy the fame and fortune it brings upon you.
+If you encounter a SHA-256 collision, please contact someone at your nearest University and enjoy the fame and fortune it brings upon you.
 
 ## FAQ
 
