@@ -41,6 +41,7 @@ Having a database allows alerts to be persistent and means that the bot doesn't 
 
 ### Securitybot proper
 The bot itself performs a small set of functions:
+
 1. Reads messages, interpreting them as commands.
 1. Polls each user object to update their state of applicable.
 1. Grabs new alerts from the database and assigns them to users or escalates on an unknown user.
