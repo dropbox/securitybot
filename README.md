@@ -55,7 +55,7 @@ The functions for the commands are defined in `commands.py` and their structure 
 ### Messaging
 Securitybot is designed to be compatible with a wide variety of messaging systems.
 We currently provide bindings for Slack, but feel free to contribute any other plugins, like for Gitter or Zulip, upstream.
-Messaging is made possible by `securitybot/chat/chat.py` which provides a small number of functions for querying users in a messaging group, messaing those users, and sending messages to a specific channel/room.
+Messaging is made possible by `securitybot/chat/chat.py` which provides a small number of functions for querying users in a messaging group, messaging those users, and sending messages to a specific channel/room.
 To add bindings for a new messaging system, subclass `Chat`.
 
 ### 2FA
@@ -81,7 +81,7 @@ If you encounter a SHA-256 collision, please contact someone your nearest Univer
 
 ## FAQ
 
-pls ask us things
+Please ask us things
 
 ## Contributing
 Contributors must abide by the [Dropbox Contributor License Agreement][cla].
