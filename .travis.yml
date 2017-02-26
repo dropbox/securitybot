@@ -4,6 +4,5 @@ python:
 sudo: false
 install: pip install -r requirements.txt
 script:
-    - flake8 securitybot/
+    - flake8 --ignore F401 securitybot/
     - PYTHONPATH=$(pwd) py.test -v tests/
-
