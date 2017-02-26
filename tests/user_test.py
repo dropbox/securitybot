@@ -3,6 +3,7 @@ from mock import Mock, patch
 
 from collections import defaultdict
 from datetime import timedelta
+from time import sleep
 
 import securitybot.user as user
 import securitybot.bot
@@ -279,8 +280,9 @@ class UserTest(TestCase):
                 test_user._last_message.text == '')
 
         mock_task.stop()
-
-    @patch('securitybot.user.ESCALATION_TIME', timedelta(seconds=-1))
+    # Putting escalation time in the past to make sure tests outsisde of
+    # business hours won't fail
+    @patch('securitybot.user.ESCALATION_TIME', timedelta(weeks=-1))
     @patch('securitybot.tasker.tasker.Task')
     @patch('securitybot.auth.auth.Auth', autospec=True)
     def test_auto_escalate(self, auth, mock_task):
@@ -299,7 +301,8 @@ class UserTest(TestCase):
         assert str(test_user._fsm.state) == 'action_performed_check'
 
         # Auto-escalation should happen immediately because escalation time
-        # is set to be zero seconds
+        # is set in the past
+
 
         test_user.step()
         assert str(test_user._fsm.state) == 'task_finished'
