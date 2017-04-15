@@ -66,8 +66,8 @@ def ignore(bot, user, args):
 
     # Find correct task in user object
     task = None
-    if which == 'last' and user.old_tasks:
-        task = user.old_tasks[-1]
+    if which == 'last' and user.tasks:
+        task = user.tasks[-1]
     elif which == 'current' and user.pending_task:
         task = user.pending_task
     if task is None:
